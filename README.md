@@ -1,2 +1,2 @@
 # Stack-dsa
- Stack medium and hard level problems
+ Stack with operatons and  medium , hard level problems
