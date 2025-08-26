@@ -32,3 +32,50 @@ class Solution {
         
     }
 }
+
+
+
+//optimal
+
+
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+       
+        Stack<Integer>st=new Stack<>();
+
+        
+
+        for(int a:asteroids){
+            boolean destroy=false;
+            while(!st.isEmpty()&&a<0&&st.peek()>0){
+                int sum=a+st.peek();
+            
+            if(sum<0){
+                st.pop();
+            }
+            else if(sum>0){
+                 destroy=true;
+                 break;
+            }
+            else{
+                st.pop();
+               destroy=true;
+                 break;
+            }
+        }
+         if(!destroy){
+            st.push(a);
+        }
+
+     }
+     int s=st.size();
+    int res[]=new int[s];
+
+   for(int i=s-1;i>=0;i--){
+    res[i]=st.pop();
+   }
+   return res;
+   
+        
+    }
+}
