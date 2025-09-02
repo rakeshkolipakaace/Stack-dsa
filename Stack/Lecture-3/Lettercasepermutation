@@ -1,0 +1,29 @@
+
+//brute force
+class Solution {
+    public List<String> letterCasePermutation(String s) {
+        List<String> result = new ArrayList<>();
+        backtrack(result, s.toCharArray(), 0);
+        return result;
+    }
+
+    private void backtrack(List<String> result, char[] arr, int index) {
+        if (index == arr.length) {
+            result.add(new String(arr));
+            return;
+        }
+
+        if (Character.isLetter(arr[index])) {
+            // Lowercase branch
+            arr[index] = Character.toLowerCase(arr[index]);
+            backtrack(result, arr, index + 1);
+
+            // Uppercase branch
+            arr[index] = Character.toUpperCase(arr[index]);
+            backtrack(result, arr, index + 1);
+        } else {
+            // If it's a digit, just continue
+            backtrack(result, arr, index + 1);
+        }
+    }
+}
