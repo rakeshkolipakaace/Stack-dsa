@@ -29,3 +29,38 @@ class Solution {
         return stack.pop();
     }
 }
+
+
+// another optimal way using two stacks
+
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> st = new Stack<>();
+
+        for (int i = 0; i < tokens.length; i++) {
+            String t = tokens[i];
+
+            if (t.equals("+") || t.equals("-") || t.equals("*") || t.equals("/")) {
+                int top1 = st.pop();
+                int top2 = st.pop();
+                st.push(solve(top2, top1, t));
+            } else {
+                st.push(Integer.parseInt(t));
+            }
+        }
+
+        return st.pop();
+    }
+
+    public static int solve(int a, int b, String op) {
+        if (op.equals("+")) {
+            return a + b;
+        } else if (op.equals("-")) {
+            return a - b;
+        } else if (op.equals("/")) {
+            return a / b;
+        } else { 
+            return a * b;
+        }
+    }
+}
